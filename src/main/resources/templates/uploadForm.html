@@ -1,0 +1,28 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<body>
+
+	<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<table>
+				<tr><td>Firewall JSON:</td><td><input type="file" name="fw" /></td></tr>
+				<tr><td>Dependency CSV:</td><td><input type="file" name="dep" /></td></tr>
+				<tr><td>on-prem IP:</td><td><input type="text" name="ip1" value="10.100.242.161"/></td></tr>
+				<tr><td>azure IP:</td><td><input type="text" name="ip2" value="10.35.0.1"/></td></tr>
+				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+			</table>
+		</form>
+	</div>
+
+	<div th:if="${result}">
+		<table border="1">
+			<tr><td>The following not matched by any rule and will be blocked!</td></tr>
+			<tr th:each="line : ${result}"><td><h3 th:text="${line}"/></td></tr>
+		</table>
+	</div>
+
+</body>
+</html>
